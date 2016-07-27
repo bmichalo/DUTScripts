@@ -21,11 +21,11 @@ echo $bus_info_dev2
 modprobe vfio
 modprobe vfio_pci
 
-ifconfig $dev1 down
-ifconfig $dev2 down
+ip link set $dev1 down
+ip link set $dev2 down
 sleep 1
-dpdk_nic_bind.py -u $bus_info_dev1 $bus_info_dev2
+dpdk_nic_bind -u $bus_info_dev1 $bus_info_dev2
 sleep 1
-dpdk_nic_bind.py -b vfio-pci $bus_info_dev1 $bus_info_dev2
+dpdk_nic_bind -b vfio-pci $bus_info_dev1 $bus_info_dev2
 sleep 1
-dpdk_nic_bind.py --status
+dpdk_nic_bind --status
